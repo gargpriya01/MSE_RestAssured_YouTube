@@ -2,11 +2,8 @@ package RestfulBooker;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
 
-public class CreateBooking {
+public class ExtractResponseAsString {
     public static void main(String[] args) {
 
         //Build Request
@@ -15,29 +12,28 @@ public class CreateBooking {
         requestSpecification.basePath("booking");*/
 
        // RequestSpecification requestSpecification=
-                RestAssured
+                String responseBody=RestAssured
                 .given()
-                .log()
-        .all()
                 .baseUri("https://restful-booker.herokuapp.com/")
                 .basePath("booking")
                 .body("{\r\n"+
-              "  \"firstname\" : \"Priya\",\r\n"+
+              "  \"firstname\" : \"Priyanka\",\r\n"+
                 "\"lastname\" : \"Garg\",\r\n"+
-                "\"totalprice\" : 111,\r\n"+
-                "\"depositpaid\" : true,\r\n"+
+                "\"totalprice\" : \"121\",\r\n"+
+                "\"depositpaid\" : \"true\",\r\n"+
                 "\"bookingdates\" : {\r\n"+
-           " \"checkin\" : \"2023-05-17\",\r\n"+
-                    "\"checkout\" : \"2023-05-18\"\r\n"+
+           " \"checkin\" : \"2023-05-18\",\r\n"+
+                    "\"checkout\" : \"2023-05-19\",\r\n"+
         "},\r\n"+
-        "\"additionalneeds\" : \"Lunch\"\r\n"+
+        "\"additionalneeds\" : \"Breakfast\"\r\n"+
 "}")
                         .contentType(ContentType.JSON)
                         .post()
                         .then()
-                        .log()
-                        .all()
-                                .statusCode(200);
+                        .extract()
+                       // .body()
+                        .asPrettyString();
+        System.out.println(responseBody);
 
         //hit request and get response
         //Response response=requestSpecification.post();

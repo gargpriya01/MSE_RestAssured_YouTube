@@ -2,19 +2,14 @@ package RestfulBooker;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
+import io.restassured.module.jsv.JsonSchemaValidator;
 
-public class CreateBooking {
+import java.io.File;
+
+public class CreateBookingWithSchemaValidator {
     public static void main(String[] args) {
 
-        //Build Request
-       /* RequestSpecification requestSpecification=RestAssured.given().log().all();
-        requestSpecification.baseUri("https://restful-booker.herokuapp.com/");
-        requestSpecification.basePath("booking");*/
 
-       // RequestSpecification requestSpecification=
                 RestAssured
                 .given()
                 .log()
@@ -37,13 +32,15 @@ public class CreateBooking {
                         .then()
                         .log()
                         .all()
-                                .statusCode(200);
+                                .statusCode(200)
+                        //to be used only when json file is kept in  resources folder
+        .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("CreateBookingResponseSchema.json"));
+//processing file using file path
+//.body(JsonSchemaValidator.matchesJsonSchema(new File("/Users/priyagarg/IdeaProjects/RestAssuredMaster/restAssuredProject/src/test/resources/CreateBookingResponseSchema.json"));
 
-        //hit request and get response
-        //Response response=requestSpecification.post();
 
-        //validate response
-     //  ValidatableResponse validatableResponse= response.then().log().all();
-       // validatableResponse.statusCode(200);
+
+
+
     }
 }

@@ -1,0 +1,23 @@
+[
+  {
+  "id": 1,
+    "first_name":       "Priya",
+    "last_name":       "Garg",
+    "email":      "abc@gmail.com",
+    "gender":    "Female"
+  },
+  {
+    "id": 2,
+    "first_name":       "Priyanka",
+    "last_name":       "Garg",
+    "email":      "abc1@gmail.com",
+    "gender":    "Female"
+},
+  {
+    "id": 3,
+    "first_name":       "Priyanshi",
+    "last_name":       "Gargi",
+    "email":      "abc2@gmail.com",
+    "gender":    "Female"
+  }
+]
